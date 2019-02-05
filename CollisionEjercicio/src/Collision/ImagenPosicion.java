@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 
 public class ImagenPosicion {
-    public int x = 1;
-    public int y ;
+    public int x = 800;
+    public int y = 300;
     public JPanel jpanel1;
     
     
@@ -27,9 +27,17 @@ public class ImagenPosicion {
     }
     
     public void cuadrado(JPanel jpanel){
-        
         jpanel.getGraphics().setColor(Color.red);
-        jpanel.getGraphics().fillRect(800, 300, 150, 150);
+        jpanel.getGraphics().fillRect(x,y, 150, 150);
         jpanel.update(jpanel.getGraphics());
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+    
 }

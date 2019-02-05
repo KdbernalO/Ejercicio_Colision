@@ -17,7 +17,9 @@ import java.util.TimerTask;
  */
 public class VentanaColision extends javax.swing.JFrame {
 
-    public int x, y ,j;
+    public int x = 10;
+    public int y = 10;
+    public int j = 0;
     Dibujar dibujo;
     ImagenPosicion posimagen;
     ImagenPosicion cuadro;
@@ -28,9 +30,6 @@ public class VentanaColision extends javax.swing.JFrame {
     public VentanaColision() {
         initComponents();
         setLocationRelativeTo(null);
-        x = 10;
-        y = 10;
-        j = 0;
         Panel1.setBackground(Color.WHITE);
         posimagen = new ImagenPosicion(Panel1);
         dibujo = new Dibujar(Panel1);
@@ -38,17 +37,25 @@ public class VentanaColision extends javax.swing.JFrame {
         
         dibujo.start();
         
-        imagenes[0]="C:/Users/Estudiantes/Documents/NetBeansProjects/CollisionEjercicio/src/Imagenes/Imagen1.png";
-        imagenes[1]="C:/Users/Estudiantes/Documents/NetBeansProjects/CollisionEjercicio/src/Imagenes/Imagen2.png";
-        imagenes[2]="C:/Users/Estudiantes/Documents/NetBeansProjects/CollisionEjercicio/src/Imagenes/Imagen3.png";
-        imagenes[3]="C:/Users/Estudiantes/NetBeansProjects/CollisionEjercicio/src/Imagenes/Imagen4.png";
-        imagenes[4]="C:/Users/Estudiantes/Documents/NetBeansProjects/CollisionEjercicio/src/Imagenes/Imagen5.png";
-        imagenes[5]="C:/Users/Estudiantes/Documents/NetBeansProjects/CollisionEjercicio/src/Imagenes/Imagen6.png";
+        imagenes[0]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen1.png";
+        imagenes[1]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen2.png";
+        imagenes[2]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen3.png";
+        imagenes[3]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen4.png";
+        imagenes[4]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen5.png";
+        imagenes[5]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen6.png";
         
         timer = new Timer();
         
-        timer.schedule(new Tarea(), 0, 10);
+        timer.schedule(new Tarea(), 0, 20);
     }
+    public void colision(){
+         if(x>= posimagen.getX()-50 && x<= posimagen.getX()+50){
+            if(y>= posimagen.getY()-60 && y <= posimagen.getY()+60){
+                System.out.println("Se tocaron los personajes");
+            }
+         }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
