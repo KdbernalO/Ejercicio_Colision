@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -44,16 +45,15 @@ public class VentanaColision extends javax.swing.JFrame {
         imagenes[4]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen5.png";
         imagenes[5]="C:/Users/Usuario/Documents/NetBeansProjects/Ejercicio_Colision-master/CollisionEjercicio/src/Imagenes/Imagen6.png";
         
-        timer = new Timer();
+       
         
+        timer = new Timer();
         timer.schedule(new Tarea(), 0, 20);
+        
+        
     }
-    public void colision(){
-         if(x>= posimagen.getX()-50 && x<= posimagen.getX()+50){
-            if(y>= posimagen.getY()-60 && y <= posimagen.getY()+60){
-                System.out.println("Se tocaron los personajes");
-            }
-         }
+    public boolean colision(int x, int y, int AnchoImagen, int AltoImagen, int x2, int y2, int AnchoMuro, int AltoMuro){
+        return x2>x && x2<x+AnchoImagen && y2<y+AltoImagen;  
     }
     
 
@@ -108,25 +108,30 @@ public class VentanaColision extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (68 == evt.getKeyCode()){
+        if (68 == evt.getKeyCode()){ //D
             x += 10;
+            //System.out.println("D"+x);
         }
-        if (65 == evt.getKeyCode()){
+        if (65 == evt.getKeyCode()){ //A
             x -= 10;
+            //System.out.println(x);
         }
-        if (87 == evt.getKeyCode()){
+        if (87 == evt.getKeyCode()){ //W
             y -= 10;
+            //System.out.println(y);
         }
-        if (83 == evt.getKeyCode()){
+        if (83 == evt.getKeyCode()){ //S
             y += 10;
+            //System.out.println("S"+y);
         }
         j++;
         if ( j == 15){
             j = 0;
         }
-        
     }//GEN-LAST:event_formKeyPressed
 
+
+    
     /**
      * @param args the command line arguments
      */
@@ -159,6 +164,7 @@ public class VentanaColision extends javax.swing.JFrame {
             @Override
             public void run() {
                 new VentanaColision().setVisible(true);
+                
             }
         });
     }
@@ -172,7 +178,12 @@ public class VentanaColision extends javax.swing.JFrame {
         public void run() {
             posimagen.draw(Panel1, x, y, imagenes[j / 5]);
             cuadro.cuadrado(Panel1);
-        }
-        
+            if(colision(x, y, posimagen.ancho_Imagen, posimagen.alto_Imagen, cuadro.getX(), cuadro.getY(), cuadro.ancho_Muro, cuadro.alto_Muro)){
+                  JOptionPane.showMessageDialog(null, "!!CHOQUE!!");
+                  timer.cancel();
+                }else{
+                    System.out.println("NO HAY CHOQUE");
+                }
+            }  
     }
 }
